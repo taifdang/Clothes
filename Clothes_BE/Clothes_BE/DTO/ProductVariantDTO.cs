@@ -1,0 +1,17 @@
+﻿namespace Clothes_BE.DTO
+{
+    public class ProductVariantDTO
+    {
+        public int id { get; set; }
+        public string title { get; set; }
+        public double price { get; set; }
+        public double old_price { get; set; }
+        public int quantity { get; set; }
+        public string option1 { get; set; }
+        public string option2 { get; set; }
+        public string product_title { get; set; }
+        public int product_id { get; set; }
+        public double percent { get; set; }
+       
+    }
+}
