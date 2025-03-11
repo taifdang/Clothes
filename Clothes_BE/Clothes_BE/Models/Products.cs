@@ -13,9 +13,9 @@ namespace Clothes_BE.Models
             
         //constraint    
         [JsonIgnore]
-        public Categories categories { get; set; }       
+        public Categories categories { get; set; }
         public ICollection<ProductOptions> product_options { get; set; }
-        public ICollection<ProductVariants> product_variants { get; set; }
+        public ICollection<ProductVariants> product_variants { get; set; }     
         public ICollection<ProductOptionImages> product_option_images { get; set; }
 
 
