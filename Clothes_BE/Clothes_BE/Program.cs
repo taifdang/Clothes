@@ -13,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //#1 add database
 builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection")));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,7 +28,13 @@ app.UseStaticFiles(new StaticFileOptions
     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Uploads")),
     RequestPath = "/uploads"
 });
+//app.MapGet("/products/get-test", async (DatabaseContext db) => await db.products.ToListAsync());
+//#3 add middleware
+
+
 app.UseHttpsRedirection();
+//#3 cors
+app.UseCors();
 
 app.UseAuthorization();
 

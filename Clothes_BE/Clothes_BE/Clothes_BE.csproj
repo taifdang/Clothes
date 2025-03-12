@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <Folder Include="Service\" />
-    <Folder Include="Uploads\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 
