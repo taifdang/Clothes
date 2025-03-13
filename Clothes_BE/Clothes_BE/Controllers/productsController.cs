@@ -182,14 +182,59 @@ namespace Clothes_BE.Controllers
 
         // PUT api/<productsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<ActionResult> Put(int id, [FromForm]ProductDTO productDTO)
         {
+            using (var transactions = _databaseContext.Database.BeginTransaction())
+            {
+                try
+                {    
+                    if(id != productDTO.id) return BadRequest(new Response { status = 400, message=" Không khớp id cần thay đổi"});
+                    var isProduct = await _databaseContext.products.FindAsync(id);
+                    if (isProduct == null) return BadRequest(new Response { status = 400, message = " Không tìm thấy id" });
+
+                    //mapper
+                    isProduct.title = productDTO.title;
+                    isProduct.category_id = productDTO.category_id;
+                    isProduct.price = productDTO.price;
+                    isProduct.old_price = productDTO.old_price;
+                    isProduct.description = productDTO.description;
+
+
+                    _databaseContext.SaveChanges();
+                    transactions.Commit();
+                }
+                catch
+                {
+                    transactions.Rollback();
+                    return BadRequest();
+                }
+            }
+            return Ok();
         }
 
         // DELETE api/<productsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
+            // xóa product => xóa ảnh, product_option, product_variant, variant_options, file images
+            using(var transactions = _databaseContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    var isProduct = await _databaseContext.products.FindAsync(id);
+                    if (isProduct == null) return BadRequest(new Response { status = 400, message = "Không tìm thấy id" });
+                    //
+                    _databaseContext.Remove(isProduct);
+                    await _databaseContext.SaveChangesAsync();
+                    transactions.Commit();                   
+                }
+                catch
+                {
+                    transactions.Rollback();
+                    return BadRequest(new Response { status = 400, message = "Thất bại" });
+                }
+            }
+            return Ok(new Response { status = 200, message = "Thành công" });
         }
         [NonAction]
         public object Pagination(ICollection<Products> product, int currentPage, int limit)
@@ -206,11 +251,11 @@ namespace Clothes_BE.Controllers
             return new { products, pagination = new { totalItem = total_item, currentPage, totalPage = total_page } };
         }
         [NonAction]
-        public async Task<ActionResult> SaveImage(IFormFileCollection files,Products product)
+        public async Task<ActionResult> SaveImage(IFormFile[] files,OptionValues option_value,Products product)
         {
             foreach (var file in files)
             {
-                var file_name = file.FileName;
+                var file_name = product.categories.label + product.id + option_value.label;
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", file_name);
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {                

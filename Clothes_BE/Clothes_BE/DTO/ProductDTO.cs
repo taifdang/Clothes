@@ -13,8 +13,7 @@ namespace Clothes_BE.DTO
         public string description { get; set; }
         public string option1 { get; set; }
         public string option2 { get; set; }
-        [NotMapped]
-        public List<FileModel> files { get; set; }
+       
        
     
     }

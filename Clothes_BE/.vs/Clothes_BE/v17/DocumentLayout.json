@@ -3,38 +3,31 @@
   "WorkspaceRootPath": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|c:\\users\\taida\\source\\repos\\clothes\\clothes_be\\clothes_be\\dto\\filemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|solutionrelative:clothes_be\\dto\\filemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/laptop_j20bggng_sqlexpress/Clothes_DB/True/SqlTable/dbo.product_option_images.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|c:\\users\\taida\\source\\repos\\clothes\\clothes_be\\clothes_be\\dto\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|solutionrelative:clothes_be\\dto\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|c:\\users\\taida\\source\\repos\\clothes\\clothes_be\\clothes_be\\controllers\\productoptionimagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|solutionrelative:clothes_be\\controllers\\productoptionimagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|c:\\users\\taida\\source\\repos\\clothes\\clothes_be\\clothes_be\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|solutionrelative:clothes_be\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/laptop_j20bggng_sqlexpress/Clothes_DB/True/SqlTable/dbo.product_option_images.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|c:\\users\\taida\\source\\repos\\clothes\\clothes_be\\clothes_be\\models\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|solutionrelative:clothes_be\\models\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/laptop_j20bggng_sqlexpress/Clothes_DB/True/SqlTable/dbo.product_options.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|c:\\users\\taida\\source\\repos\\clothes\\clothes_be\\clothes_be\\models\\productoptionimages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|solutionrelative:clothes_be\\models\\productoptionimages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|c:\\users\\taida\\source\\repos\\clothes\\clothes_be\\clothes_be\\dto\\productimagedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|solutionrelative:clothes_be\\dto\\productimagedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|c:\\users\\taida\\source\\repos\\clothes\\clothes_be\\clothes_be\\models\\producttypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|solutionrelative:clothes_be\\models\\producttypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|c:\\users\\taida\\source\\repos\\clothes\\clothes_be\\clothes_be\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|solutionrelative:clothes_be\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|c:\\users\\taida\\source\\repos\\clothes\\clothes_be\\clothes_be\\dto\\productvariantdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|solutionrelative:clothes_be\\dto\\productvariantdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|c:\\users\\taida\\source\\repos\\clothes\\clothes_be\\clothes_be\\models\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34E28068-D3BB-4BE5-9966-02A5F2C59F85}|Clothes_BE\\Clothes_BE.csproj|solutionrelative:clothes_be\\models\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -44,7 +37,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 1239,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -60,100 +53,64 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "dbo.product_option_images [Data]",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/laptop_j20bggng_sqlexpress/Clothes_DB/True/SqlTable/dbo.product_option_images.sql",
               "ToolTip": "dbo.product_option_images [Data]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-12T16:29:00.644Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FileModel.cs",
-              "DocumentMoniker": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\DTO\\FileModel.cs",
-              "RelativeDocumentMoniker": "Clothes_BE\\DTO\\FileModel.cs",
-              "ToolTip": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\DTO\\FileModel.cs",
-              "RelativeToolTip": "Clothes_BE\\DTO\\FileModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-12T16:23:52.32Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "dbo.product_options [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/laptop_j20bggng_sqlexpress/Clothes_DB/True/SqlTable/dbo.product_options.sql",
-              "ToolTip": "dbo.product_options [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-12T15:57:39.297Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Products.cs",
-              "DocumentMoniker": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\Models\\Products.cs",
-              "RelativeDocumentMoniker": "Clothes_BE\\Models\\Products.cs",
-              "ToolTip": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\Models\\Products.cs",
-              "RelativeToolTip": "Clothes_BE\\Models\\Products.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-12T08:17:08.938Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProductDTO.cs",
-              "DocumentMoniker": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\DTO\\ProductDTO.cs",
-              "RelativeDocumentMoniker": "Clothes_BE\\DTO\\ProductDTO.cs",
-              "ToolTip": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\DTO\\ProductDTO.cs",
-              "RelativeToolTip": "Clothes_BE\\DTO\\ProductDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-12T08:10:00.713Z",
+              "WhenOpened": "2025-03-13T15:57:39.543Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "Products.cs",
+              "DocumentMoniker": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\Models\\Products.cs",
+              "RelativeDocumentMoniker": "Clothes_BE\\Models\\Products.cs",
+              "ToolTip": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\Models\\Products.cs",
+              "RelativeToolTip": "Clothes_BE\\Models\\Products.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T12:26:41.373Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\Program.cs",
+              "RelativeDocumentMoniker": "Clothes_BE\\Program.cs",
+              "ToolTip": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\Program.cs",
+              "RelativeToolTip": "Clothes_BE\\Program.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAQwCoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T12:20:48.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ProductImageDTO.cs",
               "DocumentMoniker": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\DTO\\ProductImageDTO.cs",
               "RelativeDocumentMoniker": "Clothes_BE\\DTO\\ProductImageDTO.cs",
               "ToolTip": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\DTO\\ProductImageDTO.cs",
               "RelativeToolTip": "Clothes_BE\\DTO\\ProductImageDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-12T08:10:00.041Z",
+              "WhenOpened": "2025-03-13T12:06:40.149Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ProductVariantDTO.cs",
-              "DocumentMoniker": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\DTO\\ProductVariantDTO.cs",
-              "RelativeDocumentMoniker": "Clothes_BE\\DTO\\ProductVariantDTO.cs",
-              "ToolTip": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\DTO\\ProductVariantDTO.cs",
-              "RelativeToolTip": "Clothes_BE\\DTO\\ProductVariantDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "ProductOptionImages.cs",
+              "DocumentMoniker": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\Models\\ProductOptionImages.cs",
+              "RelativeDocumentMoniker": "Clothes_BE\\Models\\ProductOptionImages.cs",
+              "ToolTip": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\Models\\ProductOptionImages.cs",
+              "RelativeToolTip": "Clothes_BE\\Models\\ProductOptionImages.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-12T08:09:57.593Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ProductTypes.cs",
-              "DocumentMoniker": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\Models\\ProductTypes.cs",
-              "RelativeDocumentMoniker": "Clothes_BE\\Models\\ProductTypes.cs",
-              "ToolTip": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\Models\\ProductTypes.cs",
-              "RelativeToolTip": "Clothes_BE\\Models\\ProductTypes.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-12T02:27:51.672Z",
+              "WhenOpened": "2025-03-13T12:06:26.501Z",
               "EditorCaption": ""
             },
             {
@@ -164,9 +121,22 @@
               "RelativeDocumentMoniker": "Clothes_BE\\Controllers\\productsController.cs",
               "ToolTip": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\Controllers\\productsController.cs",
               "RelativeToolTip": "Clothes_BE\\Controllers\\productsController.cs",
-              "ViewState": "AgIAALsAAAAAAAAAAAAawNQAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAOMAAAAAAAAAAAAAwLwAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T15:58:02.256Z",
+              "WhenOpened": "2025-03-13T12:03:50.63Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "productOptionImagesController.cs",
+              "DocumentMoniker": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\Controllers\\productOptionImagesController.cs",
+              "RelativeDocumentMoniker": "Clothes_BE\\Controllers\\productOptionImagesController.cs",
+              "ToolTip": "C:\\Users\\taida\\source\\repos\\Clothes\\Clothes_BE\\Clothes_BE\\Controllers\\productOptionImagesController.cs",
+              "RelativeToolTip": "Clothes_BE\\Controllers\\productOptionImagesController.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAAAEsAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T11:38:23.777Z",
               "EditorCaption": ""
             }
           ]

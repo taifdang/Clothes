@@ -25,8 +25,8 @@ if (app.Environment.IsDevelopment())
 //#2 static files
 app.UseStaticFiles(new StaticFileOptions
 {
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Uploads")),
-    RequestPath = "/uploads"
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "images")),
+    RequestPath = "/images"
 });
 //app.MapGet("/products/get-test", async (DatabaseContext db) => await db.products.ToListAsync());
 //#3 add middleware

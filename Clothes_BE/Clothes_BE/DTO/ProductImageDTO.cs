@@ -2,7 +2,9 @@
 {
     public class ProductImageDTO
     {
-        public string image { get; set; }
-        public int position { get; set; }
+        
+        public int product_id { get; set; }
+        public int option_value_id { get; set; }
+        public IFormFile[]? files { get; set; }
     }
 }
