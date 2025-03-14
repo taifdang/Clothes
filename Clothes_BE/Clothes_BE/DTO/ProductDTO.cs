@@ -11,8 +11,7 @@ namespace Clothes_BE.DTO
         public double price { get; set; }
         public double old_price { get; set; }
         public string description { get; set; }
-        public string option1 { get; set; }
-        public string option2 { get; set; }
+        public List<string> options { get; set; }
        
        
     

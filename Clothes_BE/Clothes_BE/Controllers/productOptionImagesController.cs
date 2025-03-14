@@ -1,6 +1,7 @@
 ﻿using Clothes_BE.DTO;
 using Clothes_BE.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Any;
@@ -69,50 +70,30 @@ namespace Clothes_BE.Controllers
             //var productFolder = Path.Combine(Directory.GetCurrentDirectory(), "images");
             //check extension file
             List<string> isImage = new List<string> { ".jpg", ".png", ".gif" };
+            //
+            //
+            var check_data = _databaseContext.product_options
+               .Where(x => x.product_id == productImageDTO.product_id)
+               .Select(g => g.option_id).ToList();
+            var option_value = _databaseContext.option_values.ToList();
             //mapper đã ràng buộc khóa ngoại nên khi thêm không có tự báo lỗi     
             using (var transactions = _databaseContext.Database.BeginTransaction()) { 
                 try
-                {                                                              
+                {
+                    //check option 
+                    var option_item = option_value.FirstOrDefault(p => p.id == productImageDTO.option_value_id);
+                    if (!check_data.Contains(option_item.option_id)) return BadRequest(new Response { status = 400, message = "Option không có trong ràng buộc của sản phẩm" });
                     //Tạo thư mục: [lable-product_id]                
                     if (!Directory.Exists(productFolder))
                     {
                         Directory.CreateDirectory(productFolder);
                     }
-                    #region note
-                    //for (int i = 0;i < productImageDTO.files.Count();i++)
-                    //{
-                    //    //check file
-                    //    if (!isImage.Contains(Path.GetExtension(productImageDTO.files[i].FileName))) return BadRequest(new Response { status = 400, message = "file không hợp lệ" });
-
-                    //    if (i == productImageDTO.files.Length - 1)
-                    //    {
-                    //        file_name = "CHITIET-" + get_file_name + "-" + options.label + $"_{i}" + Path.GetExtension(productImageDTO.files[i].FileName);
-                    //    }
-                    //    else
-                    //    {
-                    //        file_name = "MAU-" + get_file_name + "-" + options.label + $"_{i}" + Path.GetExtension(productImageDTO.files[i].FileName);
-                    //    }                   
-                    //    var filePath = Path.Combine(Directory.GetCurrentDirectory(), productFolder, file_name);
-                    //    using (var stream = new FileStream(filePath, FileMode.Create))
-                    //    {
-                    //        await productImageDTO.files[i].CopyToAsync(stream);                  
-                    //    }
-                    //    var productImages = new ProductOptionImages
-                    //    {
-                    //        product_id = productImageDTO.product_id,
-                    //        option_value_id = productImageDTO.option_value_id,
-                    //        src = $"/{get_file_name}/{file_name}"                       
-                    //    };                                             
-                    //    _databaseContext.product_option_images.AddRange(productImages);
-                    //    return Ok(new Response { status = 200, message = "Thành công", data = filePath });
-                    //}  
-                    #endregion
-
+                    //first image => color of product follow option_value
                     foreach (var file in productImageDTO.files)
                     {
                         //set file name
-                        var file_name = get_file_name + "-" + options.label;
-                        if (productImageDTO.files.First() == file) file_name = $"CHI-TIET-{file_name}";
+                        var file_name = $"MAU-{get_file_name}-{options.label}";
+                        if (productImageDTO.files.First() == file) file_name = $"CHITIET-{get_file_name}-{options.label}";
                         //check extension file
                         if (!isImage.Contains(Path.GetExtension(file.FileName))) return BadRequest(new Response { status = 400, message = "file không hợp lệ" });                       
                         //set file path
@@ -120,7 +101,7 @@ namespace Clothes_BE.Controllers
                         int count = 1;
                         while(System.IO.File.Exists(file_path))
                         {
-                            file_name = string.Format("{0}({1})", get_file_name + "-" + options.label, count);
+                            file_name = string.Format("{0}({1})", $"MAU-{get_file_name}-{options.label}", count);
                             file_path = Path.Combine(Directory.GetCurrentDirectory(), "images", productFolder, file_name + Path.GetExtension(file.FileName));
                             count++;
                         }
@@ -135,7 +116,7 @@ namespace Clothes_BE.Controllers
                             product_id = productImageDTO.product_id,
                             option_value_id = productImageDTO.option_value_id,
                             //src = $"/{get_file_name}/{file_name}"
-                            src = $"/{get_file_name}/{file_name}"
+                            src = $"/{get_file_name}/{file_name + Path.GetExtension(file.FileName)}"
                         };
                         //add
                         _databaseContext.product_option_images.AddRange(productImages);
@@ -154,36 +135,72 @@ namespace Clothes_BE.Controllers
 
         }
 
-        //????
+        //Chỉ đổi hình ảnh
+        //=> lấy hình ảnh và sắp xếp tăng/giàm theo tên => MAU => M ; CHITIET => 
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(int id, [FromForm]FileModel productImageDTO)
         {
            
             try
             {
-               
+                //
+                var label = await _databaseContext.products.Include(c => c.categories).FirstOrDefaultAsync(x => x.id == productImageDTO.product_id);
+                //get option_value => label(option_value)
+                var options = await _databaseContext.option_values.FirstOrDefaultAsync(x => x.id == productImageDTO.option_value_id);
+                //get same file name
+                string get_file_name = $"{label.categories.label}-{productImageDTO.product_id}";
+                //folder image
+                var productFolder = Path.Combine(Directory.GetCurrentDirectory(), "images", $"{get_file_name}");              
+                //check extension file
+                List<string> isImage = new List<string> { ".jpg", ".png", ".gif" };
+                if (!isImage.Contains(Path.GetExtension(productImageDTO.files.FileName))) return BadRequest(new Response { status = 400, message = "file không hợp lệ" });               
                 if (id != productImageDTO.id) return BadRequest(new Response { status = 400, message = "Không khớp id" });
-
                 var isProductImage = await _databaseContext.product_option_images.FindAsync(id);
                 if (isProductImage == null) return BadRequest(new Response { status = 400, message = "Không tìm thấy id" });
-                //delete old image
 
-                var file_path = Path.GetFileName(isProductImage.src);
+                //delete old image
+                var file_path_old = Path.GetFileName(isProductImage.src);
                 var folderrparent = Path.GetDirectoryName(isProductImage.src);
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "images", folderrparent.Replace("\\",""), file_path);
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "images", folderrparent.Replace("\\",""), file_path_old);
                 if (System.IO.File.Exists(path))
                 {
-                    return Ok(new Response { status = 200, message = "Thành côngtim thay" } );
+                    System.IO.File.Delete(path);
                 }
-                
-
-                isProductImage.product_id = productImageDTO.product_id;
-                isProductImage.option_value_id = productImageDTO.option_value_id;
-                //isProductImage.src = isProductImage.src;
-
+               
+                //add new file
+                if (!Directory.Exists(productFolder))
+                {
+                    Directory.CreateDirectory(productFolder);
+                }
+                //set file name
+                var file_name = $"MAU-{get_file_name}-{options.label}";
+                file_name = $"CHITIET-{get_file_name}-{options.label}";              
+                //set file path
+                var file_path = Path.Combine(Directory.GetCurrentDirectory(), "images", productFolder, file_name + Path.GetExtension(productImageDTO.files.FileName));
+                int count = 1;
+                while (System.IO.File.Exists(file_path))
+                {
+                    file_name = string.Format("{0}({1})", $"MAU-{get_file_name}-{options.label}", count);
+                    file_path = Path.Combine(Directory.GetCurrentDirectory(), "images", productFolder, file_name + Path.GetExtension(productImageDTO.files.FileName));
+                    count++;
+                }
+                //save file
+                using (var stream = new FileStream(file_path, FileMode.Create))
+                {
+                    await productImageDTO.files.CopyToAsync(stream);
+                }
+                //create object
+                var productImages = new ProductOptionImages
+                {
+                    product_id = productImageDTO.product_id,
+                    option_value_id = productImageDTO.option_value_id,
+                    //src = $"/{get_file_name}/{file_name}"
+                    src = $"/{get_file_name}/{file_name + Path.GetExtension(productImageDTO.files.FileName)}"
+                };
+                //add
+                _databaseContext.product_option_images.Add(productImages);
                 await _databaseContext.SaveChangesAsync();
-                return Ok(new Response { status = 200, message = "Thành công", data = new { path, folderrparent, file_path } });
-
+                return Ok(new Response { status = 200, message = "Thành công", });
             }
             catch
             {
@@ -194,25 +211,27 @@ namespace Clothes_BE.Controllers
 
         // DELETE api/<productOptionImagesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-
-        }
-        [NonAction]
-        public async Task<ActionResult> SaveImage(IFormFile[] files, OptionValues option_value, Products product)
-        {
-            foreach (var file in files)
+            try
             {
-                var file_name = product.categories.label + product.id + option_value.label;
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", file_name);
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                var isProductImage = await _databaseContext.product_option_images.FindAsync(id);
+                if(isProductImage == null) return BadRequest(new Response { status = 400, message = "Không tìm thấy id" });
+
+                var file_path_old = Path.GetFileName(isProductImage.src);
+                var folderrparent = Path.GetDirectoryName(isProductImage.src);
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "images", folderrparent.Replace("\\", ""), file_path_old);
+                if (System.IO.File.Exists(path))
                 {
-                    await file.CopyToAsync(stream);
+                    System.IO.File.Delete(path);
                 }
+                _databaseContext.Remove(isProductImage);
+                await _databaseContext.SaveChangesAsync();
             }
-            return Ok();
-
-
-        }       
+            catch {
+                return BadRequest(new Response { status = 400, message = "Thất bại" });
+            }
+            return Ok(new Response { status = 200, message = "Thành công", });
+        }        
     }
 }

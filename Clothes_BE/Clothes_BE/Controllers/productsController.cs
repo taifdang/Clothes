@@ -159,18 +159,17 @@ namespace Clothes_BE.Controllers
                     _databaseContext.products.Add(products);
                     await _databaseContext.SaveChangesAsync();
                     //check option nếu option(string) không khớp option_id(string) sẽ không add được.                
-                    //Sau khi savechange() product_id bị EF xóa
-                    _databaseContext.product_options.AddRange(
-                        new ProductOptions { product_id = products.id, option_id = productDTO.option1},
-                        new ProductOptions { product_id = products.id ,option_id = productDTO.option2}
-                    );                  
+                    //Sau khi savechange() product_id bị EF xóa???
+                    //Điều kiện ?
+                    foreach(var option in productDTO.options)
+                    {
+                        _databaseContext.product_options.AddRange(new ProductOptions { product_id = products.id, option_id = option });
+                    }  
                     await _databaseContext.SaveChangesAsync();
-                    //lưu ảnh
-
                     //save db
                     transactions.Commit();
                 }
-                catch(Exception ex)
+                catch
                 {
                     transactions.Rollback();
                     return BadRequest(new Response { status = 404, message = "Thất bại" });
@@ -191,14 +190,26 @@ namespace Clothes_BE.Controllers
                     if(id != productDTO.id) return BadRequest(new Response { status = 400, message=" Không khớp id cần thay đổi"});
                     var isProduct = await _databaseContext.products.FindAsync(id);
                     if (isProduct == null) return BadRequest(new Response { status = 400, message = " Không tìm thấy id" });
-
+                    //
+                  
                     //mapper
                     isProduct.title = productDTO.title;
                     isProduct.category_id = productDTO.category_id;
                     isProduct.price = productDTO.price;
                     isProduct.old_price = productDTO.old_price;
                     isProduct.description = productDTO.description;
-
+                    var isOption = await _databaseContext.product_options.Where(x => x.product_id == isProduct.id).ToListAsync();
+                    foreach (var option in isOption)
+                    {
+                        _databaseContext.product_options.RemoveRange(option);
+                    }
+                    _databaseContext.SaveChanges();
+                    //?
+                    foreach (var option in productDTO.options)
+                    {
+                        _databaseContext.product_options.AddRange(new ProductOptions { product_id = productDTO.id, option_id = option });
+                    }
+                    await _databaseContext.SaveChangesAsync();
 
                     _databaseContext.SaveChanges();
                     transactions.Commit();
@@ -221,20 +232,27 @@ namespace Clothes_BE.Controllers
             {
                 try
                 {
-                    var isProduct = await _databaseContext.products.FindAsync(id);
+                    var isProduct = await _databaseContext.products.Include(c=>c.categories).FirstOrDefaultAsync(x=>x.id == id);
                     if (isProduct == null) return BadRequest(new Response { status = 400, message = "Không tìm thấy id" });
+                    //delete image                 
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "images", isProduct.categories.label+"-"+isProduct.id);
+                    if (Directory.Exists(path))
+                    {
+                        Directory.Delete(path,true);
+                    }
                     //
+
                     _databaseContext.Remove(isProduct);
                     await _databaseContext.SaveChangesAsync();
-                    transactions.Commit();                   
+                    transactions.Commit();
+                    return Ok(new Response { status = 200, message = "Thành công"  });
                 }
                 catch
                 {
                     transactions.Rollback();
                     return BadRequest(new Response { status = 400, message = "Thất bại" });
                 }
-            }
-            return Ok(new Response { status = 200, message = "Thành công" });
+            }          
         }
         [NonAction]
         public object Pagination(ICollection<Products> product, int currentPage, int limit)
