@@ -66,66 +66,11 @@ namespace Clothes_BE.Controllers
            
         }
 
-        // POST api/<productVariantsController>
+        //??? CONSTRAINT OPTION OF PRODUCT_OPTION_IMAGES => PRODUCT_VARIANT =>CHOOSE OPTION
+        //(EXAMPLE:PRODUCT_OPTION_IMAGES:{"product_id":1,"option_value_id:"10"}) => PRODUCT_VARIANT => option include option_value_id =10
         [HttpPost]
         public async Task<ActionResult> Post([FromForm]ProductVariantDTO DTO)
-        {
-            //using(var transactions = _databaseContext.Database.BeginTransaction())
-            //{
-            //    try
-            //    {
-
-            //        // constraint option_value of product_variant include option_value of product_options??????????????
-            //        //check id product => fill field
-            //        var isProduct = _databaseContext.products.Include(c => c.categories).FirstOrDefault(p=>p.id == DTO.product_id);
-            //        //###
-            //        //var check = _databaseContext.product_options.Include(p => p.products).Where(p=>p.product_id == DTO.product_id).ToList();
-
-            //        //var check = _databaseContext.product_options.Include(p=>p.options).ThenInclude(ov=>ov.option_values).FirstOrDefault(p => p.product_id == DTO.product_id);   
-
-
-
-
-            //        //###
-            //        var option_value = _databaseContext.option_values.ToList();
-            //        //
-            //        //var option1 = option_value.FirstOrDefault(p => p.id == DTO.option1 && p.option_id.Contains(check.option_id[0]));
-            //       // var option2 = option_value.FirstOrDefault(p => p.id == DTO.option2 && p.option_id.Contains(check.option_id[1]));
-
-
-
-            //        //have foreign key with product
-            //        var product_variant = new ProductVariants
-            //        {
-            //            product_id = DTO.product_id,
-            //            title = $"{option1.value} / {option2.value}", //name => need => label
-            //            price = DTO.price,
-            //            old_price = DTO.old_price,                        
-            //            quantity = DTO.quantity,                        
-            //            percent = ((DTO.old_price - DTO.price) / DTO.old_price) * 100,
-            //            sku = $"{isProduct.categories.label}.{isProduct.id}.{option1.label}.{option2.label}",
-
-            //        };
-            //        _databaseContext.product_variants.Add(product_variant);
-            //        await _databaseContext.SaveChangesAsync();
-
-            //        _databaseContext.variants.AddRange(
-            //            new Variants { product_variant_id = product_variant.id ,option_value_id = option1.id},
-            //            new Variants { product_variant_id = product_variant.id, option_value_id = option2.id }
-
-            //        );
-            //        await _databaseContext.SaveChangesAsync();
-
-            //        transactions.Commit();
-
-            //    }
-            //    catch
-            //    {
-            //        transactions.Rollback();
-            //        return BadRequest(new Response { status = 400, message = "Thất bại" });
-            //    }
-            //    return Ok(new Response { status = 200, message = "Thành công" });
-            //}
+        {         
             var check_data = _databaseContext.product_options               
                 .Where(x => x.product_id == DTO.product_id)              
                 .Select(g => g.option_id).ToList();
