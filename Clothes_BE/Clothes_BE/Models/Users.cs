@@ -13,6 +13,8 @@ namespace Clothes_BE.Models
         public string role { get; set; }
         public string? avatar { get; set; }
         public bool is_lock { get; set; }
+        public string? refresh_token { get; set; }
+        public DateTime? expiry_time { get; set; }
         public ICollection<Carts> carts { get; set; }
         public ICollection<Orders> orders { get; set; }
 

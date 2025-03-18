@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Clothes_BE.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/product-variants")]
     [ApiController]
     public class productVariantsController : ControllerBase
     {

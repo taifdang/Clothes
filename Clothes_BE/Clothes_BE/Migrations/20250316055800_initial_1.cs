@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Clothes_BE.Migrations
 {
-    public partial class init_1 : Migration
+    public partial class initial_1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,10 +43,13 @@ namespace Clothes_BE.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     role = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    avatar = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    is_lock = table.Column<bool>(type: "bit", nullable: false)
+                    avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    is_lock = table.Column<bool>(type: "bit", nullable: false),
+                    refresh_token = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    expiry_time = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {

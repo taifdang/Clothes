@@ -1,8 +1,11 @@
 ﻿
+using AutoMapper;
 using Clothes_BE.DTO;
 using Clothes_BE.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
+using System.Diagnostics;
 using System.Drawing;
 using System.Net;
 using System.Threading.Tasks;
@@ -13,20 +16,71 @@ namespace Clothes_BE.Controllers
 {
     [Route("api/products")]
     [ApiController]
+    //[ResponseCache(Duration = 30, Location = ResponseCacheLocation.Any, NoStore = false)]
     public class productsController : ControllerBase
     {
         // GET: api/<productsController>
         public readonly DatabaseContext _databaseContext;
-        public productsController(DatabaseContext databaseContext)
+        public readonly IMemoryCache _cache;
+        public readonly ILogger<productsController> _logger;
+        private readonly IMapper _mapper;
+        public readonly string key_cache = "productkey@112";
+        public productsController(DatabaseContext databaseContext, IMemoryCache memoryCache, ILogger<productsController> logger,IMapper mapper)
         {
             this._databaseContext = databaseContext;
+            this._cache = memoryCache;
+            _logger = logger;
+            _mapper = mapper;
         }
-        [HttpGet]
+       
+        //[ResponseCache(CacheProfileName = "API_CACHING")]
+        [HttpGet]             
         public async Task<ActionResult<IEnumerable<Products>>> Get()
-        {           
-            var products = await _databaseContext.products.Include(p => p.product_option_images).Include(c=>c.product_options).Include(v => v.product_variants).ThenInclude(p => p.variants).ToListAsync();
-            if (products == null) return BadRequest(new Response { status = 400, message ="Thất bại"});
-            return Ok(new Response { status = 200, message="Thành công",data = products});
+        {          
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            if (_cache.TryGetValue(key_cache, out IEnumerable<Products> product))
+            {
+                //Có cache
+                _logger.Log(LogLevel.Information, "Product is have cache");
+            }
+            else
+            {
+                //Chưa có cache
+                _logger.Log(LogLevel.Warning, "Product not found cache");
+                product = await _databaseContext.products                    
+                    .Include(p => p.product_option_images)
+                    .Include(c => c.product_options)
+                    .Include(v => v.product_variants)
+                        .ThenInclude(p => p.variants)                                     
+                    .ToListAsync();
+                //var product_list = _mapper.Map<ProductDTO>(product);
+                    
+                var cacheEntryOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromSeconds(30)) // thời gian hết hạn từ request cuối
+                    .SetAbsoluteExpiration(TimeSpan.FromSeconds(3600)) // thời gian hết hạn từ khi tạo
+                    .SetPriority(CacheItemPriority.Normal) // độ ưu tiên
+                    .SetSize(10) // giới hạn cache
+                    .RegisterPostEvictionCallback((key, value, reason, state) => //callback khi xóa cache
+                    {
+                        Console.WriteLine($"Cache deleted: {key}, Reason: {reason} - {state}");
+                    }); ;
+                _cache.Set(key_cache, product, cacheEntryOptions); // thêm vào cache
+            }
+            //var products = await _databaseContext.products.Include(p => p.product_option_images).Include(c => c.product_options).Include(v => v.product_variants).ThenInclude(p => p.variants).ToListAsync();
+            //if (products == null) return BadRequest(new Response { status = 400, message = "Thất bại" });
+            stopWatch.Stop();
+            _logger.Log(LogLevel.Information, "Pass Time " + stopWatch.ElapsedMilliseconds);
+            //mapper
+            //_mapper.Map<List<ProductResultDTO>>(product)
+            return Ok(new Response { status = 200, message="Thành công",data = product });
+        }
+        [HttpGet("remove-cache")]
+        public IActionResult clearCache()
+        {
+            _cache.Remove(key_cache);
+            _logger.Log(LogLevel.Information, "Remove cache successfull " + DateTime.UtcNow);
+            return Ok("remove cache");
         }
         [HttpGet("get-all")]
         public async Task<ActionResult<IEnumerable<Products>>> get_all_pagination()

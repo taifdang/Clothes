@@ -3,7 +3,8 @@
     public class Orders
     {
         public int id { get; set; }
-        public int user_id { get; set; }
+        public int? user_id { get; set; }
+        public int? session_id { get; set; }
         public string status { get; set; }
         public string? note { get; set; }
         public double total { get; set; }

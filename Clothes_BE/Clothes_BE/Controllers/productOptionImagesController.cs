@@ -10,7 +10,7 @@ using Microsoft.OpenApi.Any;
 
 namespace Clothes_BE.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/product-option-images")]
     [ApiController]
     public class productOptionImagesController : ControllerBase
     {
@@ -166,7 +166,7 @@ namespace Clothes_BE.Controllers
                 {
                     System.IO.File.Delete(path);
                 }
-               
+
                 //add new file
                 if (!Directory.Exists(productFolder))
                 {
@@ -190,17 +190,22 @@ namespace Clothes_BE.Controllers
                     await productImageDTO.files.CopyToAsync(stream);
                 }
                 //create object
-                var productImages = new ProductOptionImages
-                {
-                    product_id = productImageDTO.product_id,
-                    option_value_id = productImageDTO.option_value_id,
-                    //src = $"/{get_file_name}/{file_name}"
-                    src = $"/{get_file_name}/{file_name + Path.GetExtension(productImageDTO.files.FileName)}"
-                };
+                //var productImages = new ProductOptionImages
+                //{
+                //    product_id = productImageDTO.product_id,
+                //    option_value_id = productImageDTO.option_value_id,
+                //    //src = $"/{get_file_name}/{file_name}"
+                //    src = $"/{get_file_name}/{file_name + Path.GetExtension(productImageDTO.files.FileName)}"
+                //};
+                //update object
+                isProductImage.product_id = productImageDTO.product_id;
+                isProductImage.option_value_id = productImageDTO.option_value_id;
+                isProductImage.src = $"/{get_file_name}/{file_name + Path.GetExtension(productImageDTO.files.FileName)}";
+
                 //add
-                _databaseContext.product_option_images.Add(productImages);
+                //_databaseContext.product_option_images.Add(productImages);
                 await _databaseContext.SaveChangesAsync();
-                return Ok(new Response { status = 200, message = "Thành công", });
+                return Ok(new Response { status = 200, message = "Thành công", data=path});
             }
             catch
             {
